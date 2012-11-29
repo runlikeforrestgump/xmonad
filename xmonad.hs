@@ -56,8 +56,7 @@ myFocusFollowsMouse = False
 
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys c = M.fromList $
-    [ ((myModMask, xK_p), shellPrompt myPromptConf)
-    ]
+    [ ((myModMask, xK_p), shellPrompt myPromptConf) ]
 
 myLayoutHook = avoidStruts $ noBorders $ minimize $ tiled ||| Mirror tiled ||| Full
     where
@@ -83,7 +82,9 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 myStartupHook :: [String]
-myStartupHook = [ "nitrogen --set-scaled ~/.wallpapers/Current" ]
+myStartupHook = [ "nitrogen --set-scaled ~/.wallpapers/Current"
+                , "urxvtd -q -o -f"
+                ]
 
 myTerminal :: String
 myTerminal = "urxvtc"
@@ -169,7 +170,7 @@ main = do
     xmonad $ defaultConfig
         { borderWidth = myBorderWidth
         , focusFollowsMouse = myFocusFollowsMouse
-        , keys = myKeys
+        , keys = myKeys <+> keys defaultConfig
         , layoutHook = myLayoutHook
         , logHook = myLogHook myDzenBar >> fadeInactiveLogHook 1.0
         , modMask = myModMask
