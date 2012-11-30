@@ -10,6 +10,7 @@ import XMonad.Layout.Minimize
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.WindowSwitcherDecoration
+import XMonad.ManageHook
 import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Util.Run (spawnPipe, hPutStrLn)
@@ -25,17 +26,17 @@ dzenFGcolour = "white"
 ppCurrentBGcolour :: String
 ppCurrentBGcolour = dzenBGcolour
 ppCurrentFGcolour :: String
-ppCurrentFGcolour = "white"
+ppCurrentFGcolour = "green"
 
 ppHiddenBGcolour :: String
 ppHiddenBGcolour = dzenBGcolour
 ppHiddenFGcolour :: String
-ppHiddenFGcolour = "yellow"
+ppHiddenFGcolour = "blue"
 
 ppHiddenNoWindowsBGcolour :: String
 ppHiddenNoWindowsBGcolour = dzenBGcolour
 ppHiddenNoWindowsFGcolour :: String
-ppHiddenNoWindowsFGcolour = "gray"
+ppHiddenNoWindowsFGcolour = "yellow"
 
 ppTitleBGcolour :: String
 ppTitleBGcolour = dzenBGcolour
@@ -78,12 +79,17 @@ myLogHook h = dynamicLogWithPP $ defaultPP
     , ppWsSep = " "
     }
 
+--myManageHook :: ManageHook
+--myManageHook = composeAll
+
 myModMask :: KeyMask
 myModMask = mod4Mask
 
 myStartupHook :: [String]
 myStartupHook = [ "nitrogen --set-scaled ~/.wallpapers/Current"
+                , "nm-applet &"
                 , "urxvtd -q -o -f"
+                , "xcompmgr &"
                 ]
 
 myTerminal :: String
@@ -104,9 +110,9 @@ myPromptConf = defaultXPConfig
     , fgColor = "#EEEEEE" 
     , fgHLight = "#333333" 
     , font = "-*-ubuntu mono-medium-r-normal-*-11-*-*-*-*-*-*-*" 
-    , height = 16 
+    , height = 23
     , historyFilter = id
-    , historySize = 16 
+    , historySize = 23
     , position = Top 
     , promptBorderWidth = 0 
     , promptKeymap = defaultXPKeymap 
@@ -138,7 +144,7 @@ myDzenConf = DzenConf
     , bgColour = Just dzenBGcolour
     , fgColour = Just dzenFGcolour
     , font' = Nothing
-    , lineHeight = Just 15
+    , lineHeight = Just 23
     , width = Nothing
     , xPosition = Just 0
     , yPosition = Just 0
@@ -162,17 +168,55 @@ dzen2 c = unwords $ ["dzen2"]
 -- My Conky
 
 -- My trayer
+data TrayerConf = TrayerConf
+    { alpha :: Maybe Int
+    , iconAlignment :: Maybe String
+    , height' :: Maybe Int 
+    , screenEdge :: Maybe String
+    , setPartialStrut :: Maybe Bool
+    , tint :: Maybe String
+    , transparent :: Maybe Bool
+    , widthType :: Maybe String
+    }
 
+myTrayerConf :: TrayerConf
+myTrayerConf = TrayerConf
+    { alpha = Just 0
+    , iconAlignment = Just "right"
+    , height' = Just 23
+    , screenEdge = Just "top"
+    , setPartialStrut = Just True
+    , tint = Just "0x000000"
+    , transparent = Just True
+    , widthType = Just "request"
+    }
+
+trayer :: TrayerConf -> String
+trayer conf = unwords $ ["trayer"]
+    ++ addArg ("--align", fmap show $ iconAlignment conf)
+    ++ addArg ("--alpha", fmap show $ alpha conf)
+    ++ addArg ("--edge", fmap show $ screenEdge conf)
+    ++ addArg ("--height", fmap show $ height' conf)
+    ++ addArg ("--SetPartialStrut", fmap show $ setPartialStrut conf)
+    ++ addArg ("--tint", fmap show $ tint conf)
+    ++ addArg ("--transparent", fmap show $ transparent conf)
+    ++ addArg ("--widthtype", fmap show $ widthType conf)
+  where
+    addArg (_, Nothing) = []
+    addArg (opt, Just val) = [opt, val]
+
+-- Main
 main = do
     -- spawnPipe $ conkyDzen
     myDzenBar <- spawnPipe $ dzen2 myDzenConf
-    -- spawnPipe $ tray
+    spawnPipe $ trayer myTrayerConf
+
     xmonad $ defaultConfig
         { borderWidth = myBorderWidth
         , focusFollowsMouse = myFocusFollowsMouse
         , keys = myKeys <+> keys defaultConfig
         , layoutHook = myLayoutHook
-        , logHook = myLogHook myDzenBar >> fadeInactiveLogHook 1.0
+        , logHook = myLogHook myDzenBar >> fadeInactiveLogHook 0.75
         , modMask = myModMask
         , startupHook = mapM_ spawnOnce myStartupHook
         , terminal = myTerminal
