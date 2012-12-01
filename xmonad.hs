@@ -79,8 +79,9 @@ myLogHook h = dynamicLogWithPP $ defaultPP
     , ppWsSep = " "
     }
 
---myManageHook :: ManageHook
---myManageHook = composeAll
+myManageHook :: ManageHook
+myManageHook = composeAll
+    [ className =? "trayer" --> doIgnore ]
 
 myModMask :: KeyMask
 myModMask = mod4Mask
@@ -217,6 +218,7 @@ main = do
         , keys = myKeys <+> keys defaultConfig
         , layoutHook = myLayoutHook
         , logHook = myLogHook myDzenBar >> fadeInactiveLogHook 0.75
+        , manageHook = myManageHook
         , modMask = myModMask
         , startupHook = mapM_ spawnOnce myStartupHook
         , terminal = myTerminal
