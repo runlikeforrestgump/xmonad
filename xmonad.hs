@@ -150,7 +150,7 @@ myDzenConf = DzenConf
     , fgColour = Just dzenFGcolour
     , font' = Nothing
     , lineHeight = Just 23
-    , width = Nothing
+    , width = Just 1065
     , xPosition = Just 0
     , yPosition = Just 0
     } 
@@ -183,6 +183,8 @@ conkyDzen conkyrc dzenConfig = conky ++ " | " ++ (dzen2 dzenConfig)
 -- My trayer
 data TrayerConf = TrayerConf
     { alpha :: Maybe Int
+    , distance :: Maybe Int
+    , distanceFrom :: Maybe String
     , iconAlignment :: Maybe String
     , height' :: Maybe Int 
     , screenEdge :: Maybe String
@@ -195,6 +197,8 @@ data TrayerConf = TrayerConf
 myTrayerConf :: TrayerConf
 myTrayerConf = TrayerConf
     { alpha = Just 0
+    , distance = Just 225
+    , distanceFrom = Just "right"
     , iconAlignment = Just "right"
     , height' = Just 23
     , screenEdge = Just "top"
@@ -208,6 +212,8 @@ trayer :: TrayerConf -> String
 trayer conf = unwords $ ["trayer"]
     ++ addArg ("--align", fmap show $ iconAlignment conf)
     ++ addArg ("--alpha", fmap show $ alpha conf)
+    ++ addArg ("--distance", fmap show $ distance conf)
+    ++ addArg ("--distancefrom", fmap show $ distanceFrom conf)
     ++ addArg ("--edge", fmap show $ screenEdge conf)
     ++ addArg ("--height", fmap show $ height' conf)
     ++ addArg ("--SetPartialStrut", fmap show $ setPartialStrut conf)
@@ -221,7 +227,10 @@ trayer conf = unwords $ ["trayer"]
 -- Main
 main = do
     myDzenBar <- spawnPipe $ dzen2 myDzenConf
-    spawnPipe $ conkyDzen myConkyrc myDzenConf
+    spawnPipe $ conkyDzen myConkyrc myDzenConf {
+        width = Just 215
+        , xPosition = Just 1065
+        }
     spawnPipe $ trayer myTrayerConf
 
     xmonad $ defaultConfig
