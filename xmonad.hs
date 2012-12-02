@@ -57,7 +57,7 @@ myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = False
 
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
-myKeys c = M.fromList $
+myKeys conf = M.fromList $
     [ ((myModMask, xK_p), shellPrompt myPromptConf)
     , ((mod1Mask, xK_Tab), windows W.focusDown)
     , ((mod1Mask .|. shiftMask, xK_Tab), windows W.focusUp)
@@ -156,21 +156,29 @@ myDzenConf = DzenConf
     } 
 
 dzen2 :: DzenConf -> String
-dzen2 c = unwords $ ["dzen2"]
-    ++ addArg ("-ta", fmap show $ alignment c)
-    ++ addArg ("-bg", fmap quote $ bgColour c)
-    ++ addArg ("-fg", fmap quote $ fgColour c)
-    ++ addArg ("-fn", fmap quote $ font' c)
-    ++ addArg ("-h",  fmap show $ lineHeight c)
-    ++ addArg ("-w",  fmap show $ width c)
-    ++ addArg ("-x",  fmap show $ xPosition c)
-    ++ addArg ("-y",  fmap show $ yPosition c)
+dzen2 conf = unwords $ ["dzen2"]
+    ++ addArg ("-ta", fmap show $ alignment conf)
+    ++ addArg ("-bg", fmap quote $ bgColour conf)
+    ++ addArg ("-fg", fmap quote $ fgColour conf)
+    ++ addArg ("-fn", fmap quote $ font' conf)
+    ++ addArg ("-h",  fmap show $ lineHeight conf)
+    ++ addArg ("-w",  fmap show $ width conf)
+    ++ addArg ("-x",  fmap show $ xPosition conf)
+    ++ addArg ("-y",  fmap show $ yPosition conf)
   where
     quote = ("'" ++ ) . ( ++ "'")
     addArg (_, Nothing) = []
     addArg (opt, Just val) = [opt, val]
 
 -- My Conky
+myConkyrc :: String
+myConkyrc = "~/.xmonad/conkyrc"
+
+conkyDzen :: String -> DzenConf -> String
+conkyDzen "" _ = ""
+conkyDzen conkyrc dzenConfig = conky ++ " | " ++ (dzen2 dzenConfig)
+  where
+    conky = "conky -c " ++ conkyrc
 
 -- My trayer
 data TrayerConf = TrayerConf
@@ -212,8 +220,8 @@ trayer conf = unwords $ ["trayer"]
 
 -- Main
 main = do
-    -- spawnPipe $ conkyDzen
     myDzenBar <- spawnPipe $ dzen2 myDzenConf
+    spawnPipe $ conkyDzen myConkyrc myDzenConf
     spawnPipe $ trayer myTrayerConf
 
     xmonad $ defaultConfig

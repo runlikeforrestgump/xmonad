@@ -1,0 +1,9 @@
+out_to_x no
+background no
+out_to_console yes
+total_run_times 0
+update_interval 0.5
+user_spacer none
+
+TEXT
+${time %a %d %b %Y %T %Z}
