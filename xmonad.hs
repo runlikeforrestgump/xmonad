@@ -1,5 +1,6 @@
 import Data.List (isPrefixOf)
 import qualified Data.Map as M
+import qualified XMonad.StackSet as W
 import XMonad
 import XMonad.Core
 import XMonad.Hooks.DynamicLog
@@ -57,7 +58,10 @@ myFocusFollowsMouse = False
 
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys c = M.fromList $
-    [ ((myModMask, xK_p), shellPrompt myPromptConf) ]
+    [ ((myModMask, xK_p), shellPrompt myPromptConf)
+    , ((mod1Mask, xK_Tab), windows W.focusDown)
+    , ((mod1Mask .|. shiftMask, xK_Tab), windows W.focusUp)
+    ]
 
 myLayoutHook = avoidStruts $ noBorders $ minimize $ tiled ||| Mirror tiled ||| Full
     where
