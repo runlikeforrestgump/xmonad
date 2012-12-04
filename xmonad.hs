@@ -1,4 +1,5 @@
 import Data.List (isPrefixOf)
+import Graphics.X11.ExtraTypes
 import qualified Data.Map as M
 import qualified XMonad.StackSet as W
 import XMonad
@@ -6,11 +7,9 @@ import XMonad.Core
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.FadeInactive (fadeInactiveLogHook)
 import XMonad.Hooks.ManageDocks (avoidStruts)
-import XMonad.Layout.DraggingVisualizer
 import XMonad.Layout.Minimize
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
-import XMonad.Layout.WindowSwitcherDecoration
 import XMonad.ManageHook
 import XMonad.Prompt
 import XMonad.Prompt.Shell
@@ -56,11 +55,27 @@ myBorderWidth = 0
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = False
 
+data KeyCommands = KeyCommands
+    { volumeDown :: String
+    , volumeToggle :: String
+    , volumeUp :: String
+    }
+
+myKeyCommands :: KeyCommands
+myKeyCommands = KeyCommands
+    { volumeDown = "amixer -q set Master 1- unmute"
+    , volumeToggle = "amixer -q set Master toggle"
+    , volumeUp = "amixer -q set Master 1+ unmute"
+    }
+
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf = M.fromList $
-    [ ((myModMask, xK_p), shellPrompt myPromptConf)
-    , ((mod1Mask, xK_Tab), windows W.focusDown)
+    [ ((0, xF86XK_AudioLowerVolume), spawn (volumeDown myKeyCommands))
+    , ((0, xF86XK_AudioRaiseVolume), spawn (volumeUp myKeyCommands))
     , ((mod1Mask .|. shiftMask, xK_Tab), windows W.focusUp)
+    , ((mod1Mask, xK_Tab), windows W.focusDown)
+    , ((myModMask, xK_b), spawn (volumeToggle myKeyCommands))
+    , ((myModMask, xK_p), shellPrompt myPromptConf)
     ]
 
 myLayoutHook = avoidStruts $ noBorders $ minimize $ tiled ||| Mirror tiled ||| Full
@@ -150,7 +165,7 @@ myDzenConf = DzenConf
     , fgColour = Just dzenFGcolour
     , font' = Nothing
     , lineHeight = Just 23
-    , width = Just 1065
+    , width = Just 988
     , xPosition = Just 0
     , yPosition = Just 0
     } 
@@ -197,7 +212,7 @@ data TrayerConf = TrayerConf
 myTrayerConf :: TrayerConf
 myTrayerConf = TrayerConf
     { alpha = Just 0
-    , distance = Just 225
+    , distance = Just 292
     , distanceFrom = Just "right"
     , iconAlignment = Just "right"
     , height' = Just 23
@@ -228,8 +243,8 @@ trayer conf = unwords $ ["trayer"]
 main = do
     myDzenBar <- spawnPipe $ dzen2 myDzenConf
     spawnPipe $ conkyDzen myConkyrc myDzenConf {
-        width = Just 215
-        , xPosition = Just 1065
+        width = Just 292
+        , xPosition = Just 988
         }
     spawnPipe $ trayer myTrayerConf
 

@@ -5,5 +5,15 @@ total_run_times 0
 update_interval 0.5
 use_spacer none
 
+# Thayer icons.
+template0 $HOME/.xmonad/icons/thayer
+
+# sm4tik icons.
+template1 $HOME/.xmonad/icons/sm4tik
+
 TEXT
-${time %a %d %b %Y %T %Z}
+${if_mixer_mute Master} ^i(${template0}/vol-mute.xbm) ${mixer Master}% \
+$else${if_match ${mixer Master} == 0} ^i(${template0}/vol-mute.xbm) ${mixer Master}% \
+$else ^i(${template0}/vol-hi.xbm) ${mixer Master}% \
+$endif$endif\
+^i(${template1}/clock.xbm) ${time %a %d %b %Y %T %Z}
