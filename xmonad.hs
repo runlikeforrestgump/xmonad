@@ -56,14 +56,16 @@ myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = False
 
 data KeyCommands = KeyCommands
-    { volumeDown :: String
+    { firefox :: String
+    , volumeDown :: String
     , volumeToggle :: String
     , volumeUp :: String
     }
 
 myKeyCommands :: KeyCommands
 myKeyCommands = KeyCommands
-    { volumeDown = "amixer -q set Master 1- unmute"
+    { firefox = "/usr/local/bin/firefox/firefox &"
+    , volumeDown = "amixer -q set Master 1- unmute"
     , volumeToggle = "amixer -q set Master toggle"
     , volumeUp = "amixer -q set Master 1+ unmute"
     }
@@ -75,6 +77,7 @@ myKeys conf = M.fromList $
     , ((mod1Mask .|. shiftMask, xK_Tab), windows W.focusUp)
     , ((mod1Mask, xK_Tab), windows W.focusDown)
     , ((myModMask, xK_b), spawn (volumeToggle myKeyCommands))
+    , ((myModMask, xK_f), spawn (firefox myKeyCommands))
     , ((myModMask, xK_p), shellPrompt myPromptConf)
     ]
 
@@ -110,6 +113,7 @@ myStartupHook = [ "nitrogen --set-scaled ~/.wallpapers/Current"
                 , "nm-applet &"
                 , "urxvtd -q -o -f"
                 , "xcompmgr &"
+                , "xscreensaver -no-splash &"
                 ]
 
 myTerminal :: String
