@@ -57,6 +57,10 @@ myFocusFollowsMouse = False
 
 data KeyCommands = KeyCommands
     { firefox :: String
+    , nextSong :: String
+    , playPauseSong :: String
+    , previousSong :: String
+    , stopMusic :: String
     , volumeDown :: String
     , volumeToggle :: String
     , volumeUp :: String
@@ -65,6 +69,10 @@ data KeyCommands = KeyCommands
 myKeyCommands :: KeyCommands
 myKeyCommands = KeyCommands
     { firefox = "/usr/local/bin/firefox/firefox &"
+    , nextSong = "ncmpcpp next"
+    , playPauseSong = "ncmpcpp toggle"
+    , previousSong = "ncmpcpp prev"
+    , stopMusic = "ncmpcpp stop"
     , volumeDown = "amixer -q set Master 1- unmute"
     , volumeToggle = "amixer -q set Master toggle"
     , volumeUp = "amixer -q set Master 1+ unmute"
@@ -77,8 +85,12 @@ myKeys conf = M.fromList $
     , ((mod1Mask .|. shiftMask, xK_Tab), windows W.focusUp)
     , ((mod1Mask, xK_Tab), windows W.focusDown)
     , ((myModMask, xK_b), spawn (volumeToggle myKeyCommands))
+    , ((myModMask, xK_c), spawn (stopMusic myKeyCommands))
     , ((myModMask, xK_f), spawn (firefox myKeyCommands))
     , ((myModMask, xK_p), shellPrompt myPromptConf)
+    , ((myModMask, xK_v), spawn (nextSong myKeyCommands))
+    , ((myModMask, xK_x), spawn (playPauseSong myKeyCommands))
+    , ((myModMask, xK_z), spawn (previousSong myKeyCommands))
     ]
 
 myLayoutHook = avoidStruts $ noBorders $ minimize $ tiled ||| Mirror tiled ||| Full
@@ -169,7 +181,7 @@ myDzenConf = DzenConf
     , fgColour = Just dzenFGcolour
     , font' = Nothing
     , lineHeight = Just 23
-    , width = Just 988
+    , width = Just 965
     , xPosition = Just 0
     , yPosition = Just 0
     } 
@@ -246,8 +258,8 @@ trayer conf = unwords $ ["trayer"]
 -- Main
 main = do
     myDzenBar <- spawnPipe $ dzen2 myDzenConf
-    spawnPipe $ conkyDzen myConkyrc myDzenConf {
-        width = Just 292
+    spawnPipe $ conkyDzen myConkyrc myDzenConf
+        { width = Just 292
         , xPosition = Just 988
         }
     spawnPipe $ trayer myTrayerConf

@@ -1,0 +1,11 @@
+audio_output {
+    type "alsa"
+    name "ALSA"
+}
+db_file "~/.mpd/mpd.db"
+log_file "~/.mpd/mpd.log"
+music_directory "~/Music/complete/"
+pid_file "~/.mpd/mpd.pid"
+playlist_directory "~/.mpd/playlists/"
+state_file "~/.mpd/mpd.state"
+user ""
