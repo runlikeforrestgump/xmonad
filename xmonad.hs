@@ -1,3 +1,4 @@
+import Data.Char (chr)
 import Data.List (isPrefixOf)
 import Graphics.X11.ExtraTypes
 import qualified Data.Map as M
@@ -15,6 +16,7 @@ import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Util.Run (spawnPipe, hPutStrLn)
 import XMonad.Util.SpawnOnce
+import System.Environment (getEnv)
 import System.IO (Handle)
 
 -- My Colours
@@ -100,14 +102,14 @@ myLayoutHook = avoidStruts $ noBorders $ minimize $ tiled ||| Mirror tiled ||| F
         delta = 3/100
         ratio = 1/2
 
-myLogHook :: Handle -> X ()
-myLogHook h = dynamicLogWithPP $ defaultPP
-    { ppCurrent = dzenColor ppCurrentFGcolour ppCurrentBGcolour
-    , ppHidden = dzenColor ppHiddenFGcolour ppHiddenBGcolour
-    , ppHiddenNoWindows = dzenColor ppHiddenNoWindowsFGcolour ppHiddenNoWindowsBGcolour
+myLogHook :: Handle -> String -> X ()
+myLogHook h plusIcon = dynamicLogWithPP $ defaultPP
+    { ppCurrent = dzenColor ppCurrentFGcolour ppCurrentBGcolour . wrap plusIcon " "
+    , ppHidden = dzenColor ppHiddenFGcolour ppHiddenBGcolour . wrap plusIcon " "
+    , ppHiddenNoWindows = dzenColor ppHiddenNoWindowsFGcolour ppHiddenNoWindowsBGcolour . wrap plusIcon " "
     , ppOrder = \(ws:_:t:_) -> [ws, t]
     , ppOutput = hPutStrLn h
-    , ppSep = " | "
+    , ppSep = " " ++ [(chr 183)] ++ "  "
     , ppTitle = dzenColor ppTitleFGcolour ppTitleBGcolour
     , ppUrgent = dzenColor ppUrgentFGcolour ppUrgentBGcolour
     , ppWsSep = " "
@@ -257,6 +259,7 @@ trayer conf = unwords $ ["trayer"]
 
 -- Main
 main = do
+    plusIcon <- fmap ("^i(" ++) (fmap (++ "/.xmonad/icons/thayer/plus.xbm)") (getEnv "HOME"))
     myDzenBar <- spawnPipe $ dzen2 myDzenConf
     spawnPipe $ conkyDzen myConkyrc myDzenConf
         { width = Just 292
@@ -269,7 +272,7 @@ main = do
         , focusFollowsMouse = myFocusFollowsMouse
         , keys = myKeys <+> keys defaultConfig
         , layoutHook = myLayoutHook
-        , logHook = myLogHook myDzenBar >> fadeInactiveLogHook 0.75
+        , logHook = myLogHook myDzenBar plusIcon >> fadeInactiveLogHook 0.75
         , manageHook = myManageHook
         , modMask = myModMask
         , startupHook = mapM_ spawnOnce myStartupHook
