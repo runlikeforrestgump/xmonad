@@ -1,0 +1,15 @@
+URxvt.cursorBlink: True
+URxvt.hold: False
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.perl-ext-common: default,keyboard-select,tabbed,url-select
+URxvt.saveLines: 8000
+URxvt.scrollBar: False
+URxvt.scrollTtyKeypress: True
+URxvt.scrollTtyOutput: False
+URxvt.scrollWithBuffer: True
+URxvt.transparent: False
+URxvt.url-select.button: 2
+URxvt.url-select.launcher: /usr/local/bin/firefox/firefox
+URxvt.url-select.underline: true
