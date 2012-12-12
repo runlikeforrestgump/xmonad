@@ -127,6 +127,7 @@ myStartupHook = [ "nitrogen --set-scaled ~/.wallpapers/Current"
                 , "nm-applet &"
                 , "urxvtd -q -o -f"
                 , "xcompmgr &"
+                , "xrdb -merge ~/.config/X11/Xresources"
                 , "xscreensaver -no-splash &"
                 ]
 
