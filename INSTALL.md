@@ -3,8 +3,9 @@
 
 ----
 
-[dzen2](https://github.com/robm/dzen), status bar.  
+# What I'm Using
 [dzen icon packs](http://dzen.geekmode.org/wiki/wiki.cgi/-main/DzenIconPacks).  
+[dzen2](https://github.com/robm/dzen), status bar.  
 [colordiff](http://www.colordiff.org/), colourful diffs.  
 [conky](http://conky.sourceforge.net/), system monitor.  
 [Inconsolata](http://www.levien.com/type/myfonts/inconsolata.html), font.  
