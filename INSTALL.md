@@ -8,7 +8,7 @@
 [conky](http://conky.sourceforge.net/), system monitor.  
 [dzen icon packs](http://dzen.geekmode.org/wiki/wiki.cgi/-main/DzenIconPacks).  
 [dzen2](https://github.com/robm/dzen), status bar.  
-[emacs](https://www.gnu.org/software/emacs/), text editor.
+[emacs](https://www.gnu.org/software/emacs/), text editor.  
 [Inconsolata](http://www.levien.com/type/myfonts/inconsolata.html), font.  
 [Music Player Daemon](http://mpd.wikia.com/) (MPD), music player.  
 [ncmpcpp](http://ncmpcpp.rybczak.net/) (NCurses Music Player Client Plus Plus), MPD client.  
