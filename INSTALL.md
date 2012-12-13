@@ -11,8 +11,9 @@
 [Inconsolata](http://www.levien.com/type/myfonts/inconsolata.html), font.  
 [Music Player Daemon](http://mpd.wikia.com/) (MPD), music player.  
 [ncmpcpp](http://ncmpcpp.rybczak.net/) (NCurses Music Player Client Plus Plus), MPD client.  
-[nitrogen](http://projects.l3ib.org/nitrogen/), background setter and preview.  
+[nitrogen](http://projects.l3ib.org/nitrogen/), background setter and previewer.  
 , wallpaper.  
+, colour theme.
 [trayer](https://code.google.com/p/trayer/), system tray.  
 [urxvt](http://software.schmorp.de/pkg/rxvt-unicode) (aka rxvt-unicode), terminal emulator.  
 [urxvt-perls](https://github.com/muennich/urxvt-perls), urxvt extensions.  
