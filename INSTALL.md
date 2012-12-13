@@ -1,15 +1,19 @@
 # Install
-1. sudo aptitude install ghc6 libx11-dev libxf2-dev cabal-install conky trayer feh xcompmgr ncmpcpp mpd xscreensaver xscreensaver-gl xscreensaver-gl-extra
-1. 
+    sudo aptitude install cabal-install colordiff conky ghc6 libx11-dev libxf2-dev mpd ncmpcpp nitrogen rxvt-unicode trayer ttf-inconsolata xcompmgr xscreensaver xscreensaver-gl
 
 ----
 
-[Dzen2](https://github.com/robm/dzen), status bar.  
-[Conky](http://conky.sourceforge.net/), system monitor.  
+[dzen2](https://github.com/robm/dzen), status bar.  
+[dzen icon packs](http://dzen.geekmode.org/wiki/wiki.cgi/-main/DzenIconPacks).
+[colordiff](http://www.colordiff.org/), colourful diffs.  
+[conky](http://conky.sourceforge.net/), system monitor.  
 [Inconsolata](http://www.levien.com/type/myfonts/inconsolata.html), font.  
 [Music Player Daemon](http://mpd.wikia.com/) (MPD), music player.  
 [ncmpcpp](http://ncmpcpp.rybczak.net/) (NCurses Music Player Client Plus Plus), MPD client.  
+[nitrogen](http://projects.l3ib.org/nitrogen/), background setter and preview.  
 , wallpaper.  
-[Trayer](https://code.google.com/p/trayer/), system tray.  
+[trayer](https://code.google.com/p/trayer/), system tray.  
 [urxvt](http://software.schmorp.de/pkg/rxvt-unicode) (aka rxvt-unicode), terminal emulator.  
+[xcompmgr](http://www.freedesktop.org/wiki/Software/xapps), compositing window manager.  
 [xmonad](http://xmonad.org/), tiling window manager.  
+[xscreensaver](http://www.jwz.org/xscreensaver/), screen savers.  
