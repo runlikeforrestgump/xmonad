@@ -1,5 +1,5 @@
 # Install
-    sudo aptitude install cabal-install colordiff conky ghc6 libx11-dev libxf2-dev mpd ncmpcpp nitrogen rxvt-unicode trayer ttf-inconsolata xcompmgr xscreensaver xscreensaver-gl
+    sudo aptitude install cabal-install colordiff conky ghc6 libnotify-bin libx11-dev libxf2-dev mpd ncmpcpp nitrogen notification-daemon rxvt-unicode trayer ttf-inconsolata xcompmgr xscreensaver xscreensaver-gl
 
 ----
 
@@ -13,8 +13,10 @@
 [Music Player Daemon](http://mpd.wikia.com/) (MPD), music player.  
 [ncmpcpp](http://ncmpcpp.rybczak.net/) (NCurses Music Player Client Plus Plus), MPD client.  
 [nitrogen](http://projects.l3ib.org/nitrogen/), background setter and previewer.  
+[notification-daemon](http://www.galago-project.org/), desktop notification server.  
+[notify-send](http://www.galago-project.org/) (provided by libnotify-bin), desktop notification client.  
 , wallpaper.  
-, colour theme.
+, colour theme.  
 [trayer](https://code.google.com/p/trayer/), system tray.  
 [urxvt](http://software.schmorp.de/pkg/rxvt-unicode) (aka rxvt-unicode), terminal emulator.  
 [urxvt-perls](https://github.com/muennich/urxvt-perls), urxvt extensions.  

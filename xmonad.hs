@@ -60,6 +60,7 @@ myFocusFollowsMouse = False
 data KeyCommands = KeyCommands
     { firefox :: String
     , nextSong :: String
+    , nowPlayingSong :: String
     , playPauseSong :: String
     , previousSong :: String
     , stopMusic :: String
@@ -71,9 +72,10 @@ data KeyCommands = KeyCommands
 myKeyCommands :: KeyCommands
 myKeyCommands = KeyCommands
     { firefox = "/usr/local/bin/firefox/firefox &"
-    , nextSong = "ncmpcpp next"
+    , nextSong = "notify-send \"$(ncmpcpp next --now-playing '%a - \"%t\"')\""
+    , nowPlayingSong = "notify-send \"$(ncmpcpp --now-playing '%a - \"%t\"')\""
     , playPauseSong = "ncmpcpp toggle"
-    , previousSong = "ncmpcpp prev"
+    , previousSong = "notify-send \"$(ncmpcpp prev --now-playing '%a - \"%t\"')\""
     , stopMusic = "ncmpcpp stop"
     , volumeDown = "amixer -q set Master 1- unmute"
     , volumeToggle = "amixer -q set Master toggle"
@@ -86,13 +88,14 @@ myKeys conf = M.fromList $
     , ((0, xF86XK_AudioRaiseVolume), spawn (volumeUp myKeyCommands))
     , ((mod1Mask .|. shiftMask, xK_Tab), windows W.focusUp)
     , ((mod1Mask, xK_Tab), windows W.focusDown)
+    , ((myModMask .|. shiftMask, xK_v), spawn (nowPlayingSong myKeyCommands))
     , ((myModMask, xK_b), spawn (volumeToggle myKeyCommands))
-    , ((myModMask, xK_c), spawn (stopMusic myKeyCommands))
+    , ((myModMask, xK_c), spawn (previousSong myKeyCommands))
     , ((myModMask, xK_f), spawn (firefox myKeyCommands))
     , ((myModMask, xK_p), shellPrompt myPromptConf)
     , ((myModMask, xK_v), spawn (nextSong myKeyCommands))
-    , ((myModMask, xK_x), spawn (playPauseSong myKeyCommands))
-    , ((myModMask, xK_z), spawn (previousSong myKeyCommands))
+    , ((myModMask, xK_x), spawn (stopMusic myKeyCommands))
+    , ((myModMask, xK_z), spawn (playPauseSong myKeyCommands))
     ]
 
 myLayoutHook = avoidStruts $ noBorders $ minimize $ tiled ||| Mirror tiled ||| Full
@@ -117,7 +120,9 @@ myLogHook h plusIcon = dynamicLogWithPP $ defaultPP
 
 myManageHook :: ManageHook
 myManageHook = composeAll
-    [ className =? "trayer" --> doIgnore ]
+    [ className =? "Notification-daemon" --> doIgnore
+    , className =? "trayer" --> doIgnore
+    ]
 
 myModMask :: KeyMask
 myModMask = mod4Mask
