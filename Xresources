@@ -15,6 +15,8 @@ URxvt.tabbed.no-tabbedex-keys: false
 URxvt.tabbed.reopen-on-close: false
 URxvt.tabbed.title: true
 URxvt.transparent: False
+URxvt.urgentOnBell: True
 URxvt.url-select.button: 2
 URxvt.url-select.launcher: /usr/local/bin/firefox/firefox
 URxvt.url-select.underline: true
+URxvt.visualBell: False

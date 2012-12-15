@@ -8,6 +8,7 @@ import XMonad.Core
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.FadeInactive (fadeInactiveLogHook)
 import XMonad.Hooks.ManageDocks (avoidStruts)
+import XMonad.Hooks.UrgencyHook (clearUrgents, focusUrgent, NoUrgencyHook(NoUrgencyHook), withUrgencyHook)
 import XMonad.Layout.Minimize
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
@@ -90,9 +91,11 @@ myKeys conf = M.fromList $
     , ((0, xF86XK_AudioRaiseVolume), spawn (volumeUp myKeyCommands))
     , ((mod1Mask .|. shiftMask, xK_Tab), windows W.focusUp)
     , ((mod1Mask, xK_Tab), windows W.focusDown)
+    , ((myModMask .|. shiftMask, xK_BackSpace), clearUrgents)
     , ((myModMask .|. shiftMask, xK_z), spawn (nowPlayingSong myKeyCommands))
     , ((myModMask, xK_a), spawn (previousSong myKeyCommands))
     , ((myModMask, xK_b), spawn (volumeToggle myKeyCommands))
+    , ((myModMask, xK_BackSpace), focusUrgent)
     , ((myModMask, xK_f), spawn (firefox myKeyCommands))
     , ((myModMask, xK_p), shellPrompt myPromptConf)
     , ((myModMask, xK_q), spawn (restartXmonad myKeyCommands))
@@ -117,7 +120,7 @@ myLogHook h plusIcon = dynamicLogWithPP $ defaultPP
     , ppOutput = hPutStrLn h
     , ppSep = " " ++ [(chr 183)] ++ "  "
     , ppTitle = dzenColor ppTitleFGcolour ppTitleBGcolour
-    , ppUrgent = dzenColor ppUrgentFGcolour ppUrgentBGcolour
+    , ppUrgent = dzenColor ppUrgentFGcolour ppUrgentBGcolour . wrap plusIcon " "
     , ppWsSep = " "
     }
 
@@ -278,7 +281,7 @@ main = do
         }
     spawnPipe $ trayer myTrayerConf
 
-    xmonad $ defaultConfig
+    xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
         { borderWidth = myBorderWidth
         , focusFollowsMouse = myFocusFollowsMouse
         , keys = myKeys <+> keys defaultConfig
