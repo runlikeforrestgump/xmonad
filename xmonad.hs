@@ -63,6 +63,7 @@ data KeyCommands = KeyCommands
     , nowPlayingSong :: String
     , playPauseSong :: String
     , previousSong :: String
+    , restartXmonad :: String
     , stopMusic :: String
     , volumeDown :: String
     , volumeToggle :: String
@@ -76,6 +77,7 @@ myKeyCommands = KeyCommands
     , nowPlayingSong = "notify-send \"$(ncmpcpp --now-playing '%a - \"%t\"')\""
     , playPauseSong = "ncmpcpp toggle"
     , previousSong = "notify-send \"$(ncmpcpp prev --now-playing '%a - \"%t\"')\""
+    , restartXmonad = "killall conky dzen2 trayer; xmonad --recompile; xmonad --restart"
     , stopMusic = "ncmpcpp stop"
     , volumeDown = "amixer -q set Master 1- unmute"
     , volumeToggle = "amixer -q set Master toggle"
@@ -93,6 +95,7 @@ myKeys conf = M.fromList $
     , ((myModMask, xK_c), spawn (previousSong myKeyCommands))
     , ((myModMask, xK_f), spawn (firefox myKeyCommands))
     , ((myModMask, xK_p), shellPrompt myPromptConf)
+    , ((myModMask, xK_q), spawn (restartXmonad myKeyCommands))
     , ((myModMask, xK_v), spawn (nextSong myKeyCommands))
     , ((myModMask, xK_x), spawn (stopMusic myKeyCommands))
     , ((myModMask, xK_z), spawn (playPauseSong myKeyCommands))

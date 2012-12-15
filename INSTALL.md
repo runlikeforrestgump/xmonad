@@ -17,6 +17,7 @@
 [notify-send](http://www.galago-project.org/) (provided by libnotify-bin), desktop notification client.  
 , wallpaper.  
 , colour theme.  
+[tabbedex](https://github.com/stepb/urxvt-tabbedex), urxvt named tabs extension.  
 [trayer](https://code.google.com/p/trayer/), system tray.  
 [urxvt](http://software.schmorp.de/pkg/rxvt-unicode) (aka rxvt-unicode), terminal emulator.  
 [urxvt-perls](https://github.com/muennich/urxvt-perls), urxvt extensions.  
