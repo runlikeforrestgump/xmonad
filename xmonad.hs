@@ -91,7 +91,7 @@ myKeys conf = M.fromList $
     , ((0, xF86XK_AudioRaiseVolume), spawn (volumeUp myKeyCommands))
     , ((mod1Mask .|. shiftMask, xK_Tab), windows W.focusUp)
     , ((mod1Mask, xK_Tab), windows W.focusDown)
-    , ((myModMask .|. shiftMask, xK_BackSpace), clearUrgents)
+    , ((myModMask .|. shiftMask, xK_BackSpace), clearUrgents >> refresh)
     , ((myModMask .|. shiftMask, xK_z), spawn (nowPlayingSong myKeyCommands))
     , ((myModMask, xK_a), spawn (previousSong myKeyCommands))
     , ((myModMask, xK_b), spawn (volumeToggle myKeyCommands))
