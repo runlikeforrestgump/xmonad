@@ -123,8 +123,10 @@ myLogHook h plusIcon = dynamicLogWithPP $ defaultPP
 
 myManageHook :: ManageHook
 myManageHook = composeAll
-    [ className =? "Notification-daemon" --> doIgnore
+    [ className =? "Firefox" --> doShift "2"
+    , className =? "Notification-daemon" --> doIgnore
     , className =? "trayer" --> doIgnore
+    , className =? "Xchat" --> doShift "4"
     ]
 
 myModMask :: KeyMask
