@@ -1,9 +1,13 @@
 URxvt.cursorBlink: True
 URxvt.hold: False
+URxvt.iso14755: False
+URxvt.iso14755_52: False
+URxvt.keysym.C-S-C: perl:clipboard:copy
+URxvt.keysym.C-S-V: perl:clipboard:paste
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.perl-ext-common: default,keyboard-select,tabbedex,url-select
+URxvt.perl-ext-common: default,clipboard,keyboard-select,tabbedex,url-select
 URxvt.saveLines: 8000
 URxvt.scrollBar: False
 URxvt.scrollTtyKeypress: True

@@ -12,8 +12,8 @@ template0 $HOME/.xmonad/icons/thayer
 template1 $HOME/.xmonad/icons/sm4tik
 
 TEXT
-${if_mixer_mute Master} ^i(${template0}/vol-mute.xbm) ${mixer Master}% \
-$else${if_match ${mixer Master} == 0} ^i(${template0}/vol-mute.xbm) ${mixer Master}% \
-$else ^i(${template0}/vol-hi.xbm) ${mixer Master}% \
+${if_mixer_mute Vol} ^i(${template0}/vol-mute.xbm) ${mixer Vol}% \
+$else${if_match ${mixer Vol} == 0} ^i(${template0}/vol-mute.xbm) ${mixer Vol}% \
+$else ^i(${template0}/vol-hi.xbm) ${mixer Vol}% \
 $endif$endif\
 ^i(${template1}/clock.xbm) ${time %a %d %b %Y %T %Z}

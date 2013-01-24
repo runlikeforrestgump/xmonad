@@ -136,11 +136,12 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 myStartupHook :: [String]
-myStartupHook = [ "nitrogen --set-scaled ~/.wallpapers/Current"
+myStartupHook = [ "/usr/lib/notification-daemon-1.0/notification-daemon"
+		, "nitrogen --set-scaled ~/.wallpapers/Current"
                 , "nm-applet &"
                 , "urxvtd -q -o -f"
                 , "xcompmgr &"
-                , "xrdb -merge ~/.config/X11/Xresources"
+                , "xrdb -merge ~/.Xresources"
                 , "xscreensaver -no-splash &"
                 ]
 
@@ -259,8 +260,6 @@ trayer :: TrayerConf -> String
 trayer conf = unwords $ ["trayer"]
     ++ addArg ("--align", fmap show $ iconAlignment conf)
     ++ addArg ("--alpha", fmap show $ alpha conf)
-    ++ addArg ("--distance", fmap show $ distance conf)
-    ++ addArg ("--distancefrom", fmap show $ distanceFrom conf)
     ++ addArg ("--edge", fmap show $ screenEdge conf)
     ++ addArg ("--height", fmap show $ height' conf)
     ++ addArg ("--SetPartialStrut", fmap show $ setPartialStrut conf)
