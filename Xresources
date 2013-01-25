@@ -21,7 +21,7 @@ URxvt.tabbed.title: true
 URxvt.transparent: False
 URxvt.urgentOnBell: True
 URxvt.url-select.button: 2
-URxvt.url-select.launcher: /usr/local/bin/firefox/firefox
+URxvt.url-select.launcher: /usr/bin/chromium
 URxvt.url-select.underline: true
 URxvt.visualBell: False
 Xcursor.theme: Vanilla-DMZ
