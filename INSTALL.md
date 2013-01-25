@@ -21,6 +21,7 @@
 [trayer](https://code.google.com/p/trayer/), system tray.  
 [urxvt](http://software.schmorp.de/pkg/rxvt-unicode) (aka rxvt-unicode), terminal emulator.  
 [urxvt-perls](https://github.com/muennich/urxvt-perls), urxvt extensions.  
+[Vanilla-DMZ](http://jimmac.musichall.cz/themes.php?skin=7), Xcursor theme.
 [vim](http://www.vim.org/), text editor.  
 [xcompmgr](http://www.freedesktop.org/wiki/Software/xapps), compositing window manager.  
 [xmonad](http://xmonad.org/), tiling window manager.  

@@ -78,7 +78,7 @@ myKeyCommands = KeyCommands
     , nowPlayingSong = "notify-send \"$(ncmpcpp --now-playing '%a - \"%t\"')\""
     , playPauseSong = "ncmpcpp toggle"
     , previousSong = "notify-send \"$(ncmpcpp prev --now-playing '%a - \"%t\"')\""
-    , restartXmonad = "killall conky dzen2 trayer; xmonad --recompile; xmonad --restart"
+    , restartXmonad = "killall conky dzen2; xmonad --recompile; xmonad --restart"
     , stopMusic = "ncmpcpp stop"
     , volumeDown = "amixer -q set Master 1- unmute"
     , volumeToggle = "amixer -q set Master toggle"
@@ -128,7 +128,6 @@ myManageHook :: ManageHook
 myManageHook = composeAll
     [ className =? "Firefox" --> doShift "2"
     , className =? "Notification-daemon" --> doIgnore
-    , className =? "trayer" --> doIgnore
     , className =? "Xchat" --> doShift "4"
     ]
 
@@ -136,12 +135,11 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 myStartupHook :: [String]
-myStartupHook = [ "/usr/lib/notification-daemon-1.0/notification-daemon"
-		, "nitrogen --set-scaled ~/.wallpapers/Current"
+myStartupHook = [ "nitrogen --set-scaled ~/.wallpapers/Current"
                 , "nm-applet &"
                 , "urxvtd -q -o -f"
                 , "xcompmgr &"
-                , "xrdb -merge ~/.Xresources"
+                , "xrdb ~/.Xresources"
                 , "xscreensaver -no-splash &"
                 ]
 
@@ -228,48 +226,6 @@ conkyDzen conkyrc dzenConfig = conky ++ " | " ++ (dzen2 dzenConfig)
   where
     conky = "conky -c " ++ conkyrc
 
--- My trayer
-data TrayerConf = TrayerConf
-    { alpha :: Maybe Int
-    , distance :: Maybe Int
-    , distanceFrom :: Maybe String
-    , iconAlignment :: Maybe String
-    , height' :: Maybe Int 
-    , screenEdge :: Maybe String
-    , setPartialStrut :: Maybe Bool
-    , tint :: Maybe String
-    , transparent :: Maybe Bool
-    , widthType :: Maybe String
-    }
-
-myTrayerConf :: TrayerConf
-myTrayerConf = TrayerConf
-    { alpha = Just 0
-    , distance = Just 292
-    , distanceFrom = Just "right"
-    , iconAlignment = Just "right"
-    , height' = Just 23
-    , screenEdge = Just "top"
-    , setPartialStrut = Just True
-    , tint = Just "0x000000"
-    , transparent = Just True
-    , widthType = Just "request"
-    }
-
-trayer :: TrayerConf -> String
-trayer conf = unwords $ ["trayer"]
-    ++ addArg ("--align", fmap show $ iconAlignment conf)
-    ++ addArg ("--alpha", fmap show $ alpha conf)
-    ++ addArg ("--edge", fmap show $ screenEdge conf)
-    ++ addArg ("--height", fmap show $ height' conf)
-    ++ addArg ("--SetPartialStrut", fmap show $ setPartialStrut conf)
-    ++ addArg ("--tint", fmap show $ tint conf)
-    ++ addArg ("--transparent", fmap show $ transparent conf)
-    ++ addArg ("--widthtype", fmap show $ widthType conf)
-  where
-    addArg (_, Nothing) = []
-    addArg (opt, Just val) = [opt, val]
-
 -- Main
 main = do
     plusIcon <- fmap ("^i(" ++) (fmap (++ "/.xmonad/icons/thayer/plus.xbm)") (getEnv "HOME"))
@@ -278,7 +234,6 @@ main = do
         { width = Just 292
         , xPosition = Just 988
         }
-    spawnPipe $ trayer myTrayerConf
 
     xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
         { borderWidth = myBorderWidth
