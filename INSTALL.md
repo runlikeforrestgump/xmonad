@@ -8,7 +8,7 @@
 [conky](http://conky.sourceforge.net/), system monitor.  
 [dzen icon packs](http://dzen.geekmode.org/wiki/wiki.cgi/-main/DzenIconPacks).  
 [dzen2](https://github.com/robm/dzen), status bar.  
-[emacs](https://www.gnu.org/software/emacs/), text editor.  
+[Emacs](https://www.gnu.org/software/emacs/), text editor.  
 [Inconsolata](http://www.levien.com/type/myfonts/inconsolata.html), font.  
 [Music Player Daemon](http://mpd.wikia.com/) (MPD), music player.  
 [ncmpcpp](http://ncmpcpp.rybczak.net/) (NCurses Music Player Client Plus Plus), MPD client.  
@@ -21,8 +21,9 @@
 [urxvt](http://software.schmorp.de/pkg/rxvt-unicode) (aka rxvt-unicode), terminal emulator.  
 [urxvt-perls](https://github.com/muennich/urxvt-perls), urxvt extensions.  
 [Vanilla-DMZ](http://jimmac.musichall.cz/themes.php?skin=7), Xcursor theme.  
-[vim](http://www.vim.org/), text editor.  
+[Vim](http://www.vim.org/), text editor.  
+[WeeChat](http://www.weechat.org/) using the [beep.pl plugin](http://www.weechat.org/scripts/source/beep.pl.html/), a console IRC client.  
 [xcompmgr](http://www.freedesktop.org/wiki/Software/xapps), compositing window manager.  
 [xfce4-notifyd](http://goodies.xfce.org/projects/applications/xfce4-notifyd), desktop notification server.  
-[xmonad](http://xmonad.org/), tiling window manager.  
-[xscreensaver](http://www.jwz.org/xscreensaver/), screen savers.  
+[XMonad](http://xmonad.org/), tiling window manager.  
+[XScreenSaver](http://www.jwz.org/xscreensaver/), screen savers.  
