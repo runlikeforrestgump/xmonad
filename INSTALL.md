@@ -13,7 +13,6 @@
 [Music Player Daemon](http://mpd.wikia.com/) (MPD), music player.  
 [ncmpcpp](http://ncmpcpp.rybczak.net/) (NCurses Music Player Client Plus Plus), MPD client.  
 [nitrogen](http://projects.l3ib.org/nitrogen/), background setter and previewer.  
-[notification-daemon](http://www.galago-project.org/), desktop notification server.  
 [notify-send](http://www.galago-project.org/) (provided by libnotify-bin), desktop notification client.  
 , wallpaper.  
 , colour theme.  
@@ -24,5 +23,6 @@
 [Vanilla-DMZ](http://jimmac.musichall.cz/themes.php?skin=7), Xcursor theme.
 [vim](http://www.vim.org/), text editor.  
 [xcompmgr](http://www.freedesktop.org/wiki/Software/xapps), compositing window manager.  
+[xfce4-notifyd](http://goodies.xfce.org/projects/applications/xfce4-notifyd), desktop notification server.
 [xmonad](http://xmonad.org/), tiling window manager.  
 [xscreensaver](http://www.jwz.org/xscreensaver/), screen savers.  

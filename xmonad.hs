@@ -126,9 +126,8 @@ myLogHook h plusIcon = dynamicLogWithPP $ defaultPP
 
 myManageHook :: ManageHook
 myManageHook = composeAll
-    [ className =? "Firefox" --> doShift "2"
-    , className =? "Notification-daemon" --> doIgnore
-    , className =? "Xchat" --> doShift "4"
+    [ className =? "Chromium" --> doShift "2"
+    , className =? "Xfce4-notifyd" --> doIgnore
     ]
 
 myModMask :: KeyMask
