@@ -22,7 +22,7 @@
 [urxvt-perls](https://github.com/muennich/urxvt-perls), urxvt extensions.  
 [Vanilla-DMZ](http://jimmac.musichall.cz/themes.php?skin=7), Xcursor theme.  
 [Vim](http://www.vim.org/), text editor.  
-[WeeChat](http://www.weechat.org/) using the [beep.pl plugin](http://www.weechat.org/scripts/source/beep.pl.html/), a console IRC client.  
+[WeeChat](http://www.weechat.org/), a console IRC client, using the [beep.pl plugin](http://www.weechat.org/scripts/source/beep.pl.html/).  
 [xcompmgr](http://www.freedesktop.org/wiki/Software/xapps), compositing window manager.  
 [xfce4-notifyd](http://goodies.xfce.org/projects/applications/xfce4-notifyd), desktop notification server.  
 [XMonad](http://xmonad.org/), tiling window manager.  
