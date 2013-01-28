@@ -1,4 +1,6 @@
+URxvt.boldFont: xft:Inconsolata:size=10:style=Bold
 URxvt.cursorBlink: True
+URxvt.font: xft:Inconsolata:size=10:style=Regular
 URxvt.hold: False
 URxvt.iso14755: False
 URxvt.iso14755_52: False

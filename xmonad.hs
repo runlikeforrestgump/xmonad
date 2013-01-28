@@ -159,7 +159,7 @@ myPromptConf = defaultXPConfig
     , defaultText = "" 
     , fgColor = "#EEEEEE" 
     , fgHLight = "#333333" 
-    , font = "-*-ubuntu mono-medium-r-normal-*-11-*-*-*-*-*-*-*" 
+    , font = "-misc-inconsolata-medium-*-*-*-12-*-*-*-*-*-*-*"
     , height = 23
     , historyFilter = id
     , historySize = 23
@@ -193,7 +193,7 @@ myDzenConf = DzenConf
     { alignment = Just LeftAlign
     , bgColour = Just dzenBGcolour
     , fgColour = Just dzenFGcolour
-    , font' = Nothing
+    , font' = Just "xft:Inconsolata:size=12:style=Regular"
     , lineHeight = Just 23
     , width = Just 965
     , xPosition = Just 0
