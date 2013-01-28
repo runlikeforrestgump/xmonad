@@ -9,7 +9,7 @@
 [dzen icon packs](http://dzen.geekmode.org/wiki/wiki.cgi/-main/DzenIconPacks).  
 [dzen2](https://github.com/robm/dzen), status bar.  
 [Emacs](https://www.gnu.org/software/emacs/), text editor.  
-[Inconsolata](http://www.levien.com/type/myfonts/inconsolata.html), font.  
+[Inconsolata](http://www.levien.com/type/myfonts/inconsolata.html), font (provided by [ttf-google-webfonts-git](https://aur.archlinux.org/packages/ttf-google-webfonts-git/)).  
 [Music Player Daemon](http://mpd.wikia.com/) (MPD), music player.  
 [ncmpcpp](http://ncmpcpp.rybczak.net/) (NCurses Music Player Client Plus Plus), MPD client.  
 [nitrogen](http://projects.l3ib.org/nitrogen/), background setter and previewer.  
