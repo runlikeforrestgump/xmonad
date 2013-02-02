@@ -22,14 +22,14 @@ import System.IO (Handle)
 
 -- My Colours
 dzenBGcolour :: String
-dzenBGcolour = "black"
+dzenBGcolour = "#fdf6e3"
 dzenFGcolour :: String
-dzenFGcolour = "white"
+dzenFGcolour = "#000000"
 
 ppCurrentBGcolour :: String
-ppCurrentBGcolour = dzenBGcolour
+ppCurrentBGcolour = "#268bd2"
 ppCurrentFGcolour :: String
-ppCurrentFGcolour = "green"
+ppCurrentFGcolour = "white"
 
 ppHiddenBGcolour :: String
 ppHiddenBGcolour = dzenBGcolour
@@ -39,7 +39,7 @@ ppHiddenFGcolour = "blue"
 ppHiddenNoWindowsBGcolour :: String
 ppHiddenNoWindowsBGcolour = dzenBGcolour
 ppHiddenNoWindowsFGcolour :: String
-ppHiddenNoWindowsFGcolour = "yellow"
+ppHiddenNoWindowsFGcolour = "#b58900"
 
 ppTitleBGcolour :: String
 ppTitleBGcolour = dzenBGcolour
@@ -47,9 +47,9 @@ ppTitleFGcolour :: String
 ppTitleFGcolour = dzenFGcolour
 
 ppUrgentBGcolour :: String
-ppUrgentBGcolour = dzenBGcolour
+ppUrgentBGcolour = "#dc322f"
 ppUrgentFGcolour :: String
-ppUrgentFGcolour = "red"
+ppUrgentFGcolour = "white"
 
 -- My Defaults
 myBorderWidth :: Dimension
