@@ -195,7 +195,7 @@ myDzenConf = DzenConf
     , fgColour = Just dzenFGcolour
     , font' = Just "xft:Inconsolata:size=12:style=Regular"
     , lineHeight = Just 23
-    , width = Just 940
+    , width = Just 905
     , xPosition = Just 0
     , yPosition = Just 0
     } 
@@ -230,8 +230,9 @@ main = do
     plusIcon <- fmap ("^i(" ++) (fmap (++ "/.xmonad/icons/thayer/plus.xbm)") (getEnv "HOME"))
     myDzenBar <- spawnPipe $ dzen2 myDzenConf
     spawnPipe $ conkyDzen myConkyrc myDzenConf
-        { width = Just 340
-        , xPosition = Just 940 
+        { alignment = Just RightAlign 
+        , width = Just 375
+        , xPosition = Just 905 
         }
 
     xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
